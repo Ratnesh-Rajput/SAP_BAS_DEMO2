@@ -1,0 +1,1 @@
+using ForecastService as service from '../../srv/forecast-service';

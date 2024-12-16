@@ -1,0 +1,9 @@
+<mvc:View controllerName="fiorifrontend.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:u="sap.ui.unified">
+    
+    <Page id="page" title="{i18n>title}">
+    <u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx" icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload" width="auto" /> <Button type="Emphasized" press="onSave" icon="sap-icon://save" text="Save Data" class="sapUiSmallMargin" />
+    </Page>
+</mvc:View>
