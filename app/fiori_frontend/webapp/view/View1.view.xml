@@ -1,9 +1,158 @@
-<mvc:View controllerName="fiorifrontend.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc"
+<mvc:View 
+    controllerName="fiorifrontend.controller.View1"
     xmlns="sap.m"
-    xmlns:u="sap.ui.unified">
+    xmlns:u="sap.ui.unified"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:suite="sap.suite.ui.microchart"
+
+    height="100%">
+
+    <Page id="page" title="Forecast Data">
+
+
     
-    <Page id="page" title="{i18n>title}">
-    <u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx" icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload" width="auto" /> <Button type="Emphasized" press="onSave" icon="sap-icon://save" text="Save Data" class="sapUiSmallMargin" />
+ <HBox alignItems="Center" justifyContent="Start" class="sapUiSmallMargin">
+    <!-- File Upload Control -->
+    <u:FileUploader 
+        id="FileUploaderId" 
+        sameFilenameAllowed="true"
+        iconOnly="false" 
+        buttonOnly="true"
+        fileType="XLSX,xlsx" 
+        icon="sap-icon://upload" 
+        iconFirst="true"
+        style="Emphasized" 
+        change="onUpload" 
+        width="auto" />
+    
+    <!-- Save Button -->
+    <Button 
+        type="Emphasized" 
+        id="button" 
+        press="onSave" 
+        icon="sap-icon://save" 
+        text="Save Data" 
+        class="sapUiSmallMargin" 
+        width="auto"/>
+</HBox>
+                <!-- Get Forecast Data Button -->
+             
+
+                <!-- Table to display Excel Data -->
+                <Table id="excelTable" 
+                    items="{localModel>/results}" 
+                    class="sapUiResponsiveMargin" 
+                    width="100%">
+                    <columns>
+                        <Column>
+                            <Text text="Date" />
+                        </Column>
+                        <Column>
+                            <Text text="Company Code" />
+                        </Column>
+                        <Column>
+                            <Text text="GL Account" />
+                        </Column>
+                        <Column>
+                            <Text text="Description" />
+                        </Column>
+                        <Column>
+                            <Text text="Location" />
+                        </Column>
+                        <Column>
+                            <Text text="Profit Center" />
+                        </Column>
+                        <Column>
+                            <Text text="Cost Center" />
+                        </Column>
+                        <Column>
+                            <Text text="Audit Trail" />
+                        </Column>
+                        <Column>
+                            <Text text="Amount LC" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{localModel>Date}" />
+                                <Text text="{localModel>Company_code}" />
+                                <Text text="{localModel>GL_Account}" />
+                                <Text text="{localModel>Description}" />
+                                <Text text="{localModel>Location}" />
+                                <Text text="{localModel>Profit_Ctr}" />
+                                <Text text="{localModel>Cost_Ctr}" />
+                                <Text text="{localModel>Audi_Trail}" />
+                                <Text text="{localModel>Amount_LC}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+
+
+          <suite:InteractiveLineChart 
+                    id="lineChart" 
+                    width="100%" 
+                    height="100%" 
+                    selectionChanged="onLineChartSelectionChanged">
+                    
+                    <!-- Chart Data Points -->
+                    <suite:points>
+                        <suite:InteractiveLineChartPoint value="33.1" label="May" secondaryLabel="Q2" />
+                        <suite:InteractiveLineChartPoint value="12" label="June" />
+                        <suite:InteractiveLineChartPoint value="51.4" label="July" secondaryLabel="Q3" />
+                        <suite:InteractiveLineChartPoint value="52" label="Aug" />
+                        <suite:InteractiveLineChartPoint value="69.9" label="Sep" />
+                        <suite:InteractiveLineChartPoint value="0.9" label="Oct" secondaryLabel="Q4" />
+                    </suite:points>
+                </suite:InteractiveLineChart>
+    
+            
+  <VBox class="sapUiSmallMargin">
+        <!-- Button to Get Forecast Data -->
+      <Button type="Emphasized" 
+                        id="getForecastButton" 
+                        press="onGetForecastData" 
+                        icon="sap-icon://search" 
+                        text="Get Forecast Data" 
+                        class="sapUiSmallMargin" />
+
+    
+
+    <Table id="forecastTable"  visible="false" items="{forecastModel>/ForecastData}">
+        <columns>
+            <Column>
+                <Text text="Date" />
+            </Column>
+            <Column>
+                <Text text="Forecast" />
+            </Column>
+            <Column>
+                <Text text="Lower CI" />
+            </Column>
+            <Column>
+                <Text text="Upper CI" />
+            </Column>
+        </columns>
+        
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{forecastModel>Date}" />
+                    <Text text="{forecastModel>Forecast}" />
+                    <Text text="{forecastModel>Lower_CI}" />
+                    <Text text="{forecastModel>Upper_CI}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+       
+    </VBox>
+
     </Page>
 </mvc:View>
+<!-- input boxes4 -->

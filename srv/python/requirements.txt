@@ -1,0 +1,6 @@
+Flask==2.3.*
+pandas
+hdbcli==2.17.*
+hana_ml>=2.11.0,<3.0.0
+statsmodels>=0.13.0,<1.0.0
+matplotlib>=3.4.0,<4.0.0
